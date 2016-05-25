@@ -67,6 +67,7 @@ GEM
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
     rack (1.6.4)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.4)
@@ -136,6 +137,7 @@ DEPENDENCIES
   byebug
   jbuilder (~> 2.0)
   pg
+  rack-cors
   rack-test (~> 0.6.3)
   rails (= 4.2.4)
   rspec-rails (~> 3.4, >= 3.4.2)
