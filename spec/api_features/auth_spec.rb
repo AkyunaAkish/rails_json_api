@@ -21,4 +21,16 @@ describe "User" do
     expect(User.all.length).to be(1)
   end
 
+  it "can be authenticated" do
+    name = "Elowyn"
+    password = "iLuvS0up"
+    user = User.new(name: name)
+    user.password = password
+    user.save!
+
+    post '/login', params = {name: name, password: password}
+    expect(JSON.parse(last_response.body)['id']).to eq(User.last.id)
+    expect(JSON.parse(last_response.body)['name']).to eq(name)
+  end
+
 end
