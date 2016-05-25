@@ -14,6 +14,8 @@ class AuthController < ApplicationController
     user = User.find_by(name: params[:name])
     if user.password == params[:password]
       render :json => {id: user.id, name: user.name}
+    else
+      render status: 400, :json => {error: "Name or password is incorrect"}
     end
   end
 

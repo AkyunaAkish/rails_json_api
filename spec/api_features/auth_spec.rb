@@ -33,4 +33,16 @@ describe "User" do
     expect(JSON.parse(last_response.body)['name']).to eq(name)
   end
 
+  it "is not authenticated with bad credentials" do
+    bad_password = "password"
+    name = "Elowyn"
+    good_password = "iLuvS0up"
+    user = User.new(name: name)
+    user.password = good_password
+    user.save!
+
+    post '/login', params = {name: name, password: bad_password}
+    expect(JSON.parse(last_response.body)).to eq("error" => "Name or password is incorrect")
+  end
+
 end
