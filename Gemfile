@@ -7,12 +7,13 @@ gem 'pg'
 gem 'jbuilder', '~> 2.0'
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
+  gem 'rack-test', '~> 0.6.3'
 end
 
 group :development do

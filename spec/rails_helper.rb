@@ -5,6 +5,22 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
+
+# This is loaded for all tests that include rails_helper (obvo). 
+# IF we don't need this API testing for a test, move this into another box.
+require 'rack/test'
+module ApiHelper
+  include Rack::Test::Methods
+
+  def app
+    Rails.application
+  end
+end
+
+RSpec.configure do |config|
+  config.include ApiHelper
+end
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
