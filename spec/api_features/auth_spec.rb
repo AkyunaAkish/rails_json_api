@@ -28,7 +28,7 @@ describe "User" do
     user.password = password
     user.save!
 
-    post '/login', params = {name: name, password: password}
+    post '/signin', params = {name: name, password: password}
     expect(JSON.parse(last_response.body)['id']).to eq(User.last.id)
     expect(JSON.parse(last_response.body)['name']).to eq(name)
   end
@@ -41,7 +41,7 @@ describe "User" do
     user.password = good_password
     user.save!
 
-    post '/login', params = {name: name, password: bad_password}
+    post '/signin', params = {name: name, password: bad_password}
     expect(JSON.parse(last_response.body)).to eq("error" => "Name or password is incorrect")
   end
 
