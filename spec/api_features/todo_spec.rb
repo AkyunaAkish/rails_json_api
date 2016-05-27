@@ -1,12 +1,21 @@
 require 'rails_helper'
 
 describe 'Todos' do
-  it 'can be created and listed' do
+  it 'can be created and listed, only see own todos' do
+    emily = User.create!(
+      name: "Emily",
+      password: "iLuvElowyn",
+    )
+    Todo.create!(
+      text: "Drive a car",
+      user_id: emily.id,
+      completed: false,
+    )
+
     name = "Elowyn"
     password = "iLuvS0up"
     post '/signup', params = {name: name, password: password}
     jwt = JSON.parse(last_response.body)['jwt']
-
     get '/todos', params = {user_id: User.last.id, jwt: jwt}
     expect(JSON.parse(last_response.body)).to eq([])
 

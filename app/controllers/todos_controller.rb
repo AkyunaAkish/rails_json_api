@@ -1,7 +1,8 @@
 class TodosController < ApplicationController
 
   def index
-    render json: Todo.all
+    confirm = JsonWebToken.verify(params[:jwt], key: ENV['SECRET'])
+    render json: Todo.where(user_id: confirm[:ok][:id])
   end
 
   def create
